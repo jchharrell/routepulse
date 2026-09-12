@@ -10,4 +10,9 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: maven
-      - run: mvn -B test
+      - name: Unit tests
+        run: mvn -B test
+      - name: Package
+        run: mvn -B -DskipTests package
+      - name: Runnable scenario smoke test
+        run: java -cp target/classes dev.jaredharrell.routepulse.ScenarioComparison 42 60
